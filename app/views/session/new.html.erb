@@ -1,0 +1,24 @@
+<h1 class="title">LOG IN</h1>
+<p id=”notice”><%= notice %></p>
+<p id=”alert”><%= alert %></p>
+
+<div class="formm">
+  
+<%= form_for(:reviewer, url: session_index_path) do |f| %>   
+<div>   
+<%= f.label :name %><br>   
+<%= f.text_field :name %>   
+</div>   
+<br>
+  <div>   
+    <%= f.label :password %><br>   
+<%= f.password_field :password %>   
+</div>   
+<br>
+  <div>   
+    <%= submit_tag "Log In" %>   
+</div>   
+<% end %>  
+
+
+</div>

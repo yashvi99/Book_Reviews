@@ -1,0 +1,45 @@
+
+<p id="notice"><%= notice %></p>
+
+<div class="book">
+  <h2><%= @book.name %> ( <%= @book.author %> ) </h2>
+  <%= link_to 'Edit', edit_book_path(@book) %>
+</div>
+
+<div class="back back2">
+<%= link_to 'Back', books_path %>
+</div>
+
+ <div class="split left">
+
+  	<div>
+	<%= render @book.notes %>
+	</div>
+
+ </div>
+
+ <div class="split right">
+
+  	<div  class = "formm2">
+	<%= form_for ([@book,@book.notes.new]) do |f| %>
+		<div>
+			<%= f.label :title %>
+			<%= f.text_field :title %>
+		</div>
+		<br>
+		<div>
+			<%= f.label :note %>
+			<%= f.text_area :note , size: "30x10"%>
+		</div>
+		<br>
+		<div>
+			<%= f.submit "Add New" %>
+		</div>
+	<%end%>
+	<div>
+
+</div>
+
+
+
+

@@ -1,0 +1,13 @@
+<h1 class="title">Editing Book</h1>
+
+<div class="formm">
+<%= render 'form', book: @book %>
+</div>
+<div class="show">
+<button>
+<%= link_to 'Show', @book %> 
+</button>
+</div>
+<div class="back">
+<%= link_to 'Back', books_path %>
+</div>

@@ -1,0 +1,19 @@
+
+<div class="container">
+  <div class="dialogbox">
+    <div class="body">
+      <span class="tip tip-left"></span>
+      <div class="message">
+
+<span>
+	<strong><%= note.title %></strong>
+	(<%= time_ago_in_words note.created_at %> ago)
+	<br>
+	<br>
+	<%= note.note %>
+</span>
+<br>
+<%= link_to "Delete note" , [@book,note] , method: :delete %>
+
+    </div>
+  </div>

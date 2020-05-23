@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>BooksReview</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+  </head>
+
+  <body style="background-image: linear-gradient(rgba(255,255,255,0.5), rgba(255,255,255,0.5)), url('/assets/book.jpg');
+  background-size: cover;">
+
+  <% if logged_in? %>
+    <div style="float: right;">
+      Logged in as <%= current_user %> 
+      <button><%= link_to "Log Out", logout_path, method: :delete %></button>
+    </div>
+  <% end %>
+    <%= yield %>
+  </body>
+</html>
