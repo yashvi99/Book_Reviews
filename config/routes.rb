@@ -5,8 +5,10 @@ Rails.application.routes.draw do
 		resources :notes , only: [:create, :destroy]
 	end
 	resources :session , only: [:new, :create, :destroy]
+	resources :reviewers
 
 	get '/login' => 'session#new', as: 'login'
+	get '/signup' => 'reviewers#new', as: 'signup'
 	delete '/logout' => 'session#destroy', as: 'logout'
 
 end

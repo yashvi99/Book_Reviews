@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 2020_05_21_194838) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "books", force: :cascade do |t|
     t.string "name"
     t.string "author"
@@ -20,14 +23,14 @@ ActiveRecord::Schema.define(version: 2020_05_21_194838) do
   end
 
   create_table "books_reviewers", id: false, force: :cascade do |t|
-    t.integer "reviewer_id", null: false
-    t.integer "book_id", null: false
+    t.bigint "reviewer_id", null: false
+    t.bigint "book_id", null: false
   end
 
   create_table "notes", force: :cascade do |t|
     t.string "title"
     t.text "note"
-    t.integer "book_id", null: false
+    t.bigint "book_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["book_id"], name: "index_notes_on_book_id"
