@@ -76,6 +76,13 @@ table {
     width: 700px;
     margin-right: auto;
 }
+.check{
+  display: block;
+  margin-top: 30px;
+  max-width: 220px;
+  margin-left: auto;
+  margin-right: auto;
+}
 .new{
   	display: block;
   	margin-top: 200px;

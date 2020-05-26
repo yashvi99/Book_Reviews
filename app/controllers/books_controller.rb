@@ -1,5 +1,6 @@
 class BooksController < ApplicationController
-  before_action :set_book, only: [:show, :edit, :update, :destroy]
+  before_action :set_book, only: [:edit, :update, :destroy]
+  before_action :set_book_show, only: [:show, :add]
 
   # GET /books
   # GET /books.json
@@ -55,7 +56,7 @@ class BooksController < ApplicationController
   # DELETE /books/1
   # DELETE /books/1.json
   def destroy
-    @book.destroy
+    Reviewer.find(session[:reviewer_id]).books.delete(@book)
     respond_to do |format|
       format.html { redirect_to books_url, notice: 'Book was successfully destroyed.' }
       format.json { head :no_content }
@@ -63,13 +64,26 @@ class BooksController < ApplicationController
   end
 
   def all
-    @book = Reviewer.books.all
+    @books = Book.all
+  end
+
+  def add
+    if not Reviewer.find(session[:reviewer_id]).books.include?(@book)
+      Reviewer.find(session[:reviewer_id]).books << @book
+      @msg = "Book succesfully added"
+    else
+      @msg = "Book already exists"
+    end
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_book
       @book = Reviewer.find(session[:reviewer_id]).books.find(params[:id])
+    end
+
+    def set_book_show
+      @book = Book.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.

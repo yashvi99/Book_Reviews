@@ -11,6 +11,9 @@
 	<br>
 	<br>
 	<%= note.note %>
+  <br>
+  <strong> - <%= current_user %></strong>
+  <br>
 </span>
 <br>
 <%= link_to "Delete note" , [@book,note] , method: :delete %>

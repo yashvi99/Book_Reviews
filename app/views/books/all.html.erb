@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1 class="title">Library Books</h1>
+
+<div class="bookss">
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Author</th>
+
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @books.each do |book| %>
+      <tr>
+        <td><%= book.name %></td>
+        <td><%= book.author %></td>
+
+        <td><%= link_to 'Show', book %></td>
+        <td><%= link_to 'Add', add_path(:id => book.id) %></td>
+
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>
+
+<div class="back">
+<%= link_to 'Back', books_path %>
+</div>

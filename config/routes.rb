@@ -11,5 +11,6 @@ Rails.application.routes.draw do
 	get '/signup' => 'reviewers#new', as: 'signup'
 	delete '/logout' => 'session#destroy', as: 'logout'
 	get '/library' => 'books#all', as: 'library'
+	get '/add' => 'books#add', as: 'add'
 
 end
