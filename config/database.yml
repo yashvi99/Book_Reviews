@@ -85,4 +85,3 @@ test:
 production:
   <<: *default
   database: book_reviews_production
-
