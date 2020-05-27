@@ -12,11 +12,13 @@
 	<br>
 	<%= note.note %>
   <br>
-  <strong> - <%= current_user %></strong>
+  <strong> - <%= Reviewer.find(note.reviewer_id).name %></strong>
   <br>
-</span>
+</span> 
 <br>
-<%= link_to "Delete note" , [@book,note] , method: :delete %>
 
+<% if session[:reviewer_id] == note.reviewer_id %>
+<%= link_to "Delete note" , [@book,note] , method: :delete %>
+<% end %>
     </div>
   </div>

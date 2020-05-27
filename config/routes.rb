@@ -12,5 +12,4 @@ Rails.application.routes.draw do
 	delete '/logout' => 'session#destroy', as: 'logout'
 	get '/library' => 'books#all', as: 'library'
 	get '/add' => 'books#add', as: 'add'
-
 end

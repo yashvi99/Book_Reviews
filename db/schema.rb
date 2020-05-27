@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_21_194838) do
+ActiveRecord::Schema.define(version: 2020_05_27_085109) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(version: 2020_05_21_194838) do
     t.bigint "book_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "reviewer_id", null: false
     t.index ["book_id"], name: "index_notes_on_book_id"
   end
 
@@ -44,4 +45,5 @@ ActiveRecord::Schema.define(version: 2020_05_21_194838) do
   end
 
   add_foreign_key "notes", "books"
+  add_foreign_key "notes", "reviewers"
 end

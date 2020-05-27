@@ -13,6 +13,7 @@ class BooksController < ApplicationController
   def show
   end
 
+
   # GET /books/new
   def new
     @book = Reviewer.find(session[:reviewer_id]).books.new
@@ -25,16 +26,20 @@ class BooksController < ApplicationController
   # POST /books
   # POST /books.json
   def create
-    @book = Book.new(book_params)
+    if(Book.find_by(name: params[:book][:name]))
+      redirect_to library_path, notice: 'Book already exists'
+    else
+      @book = Book.new(book_params)
 
-    respond_to do |format|
-      if @book.save
-        Reviewer.find(session[:reviewer_id]).books << @book
-        format.html { redirect_to books_url, notice: 'Book was successfully created.' }
-        format.json { render :show, status: :created, location: @book }
-      else
-        format.html { render :new }
-        format.json { render json: @book.errors, status: :unprocessable_entity }
+      respond_to do |format|
+        if @book.save
+          Reviewer.find(session[:reviewer_id]).books << @book
+          format.html { redirect_to books_url, notice: 'Book was successfully created.' }
+          format.json { render :show, status: :created, location: @book }
+        else
+          format.html { render :new }
+          format.json { render json: @book.errors, status: :unprocessable_entity }
+        end
       end
     end
   end

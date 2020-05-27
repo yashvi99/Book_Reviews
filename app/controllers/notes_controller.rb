@@ -2,7 +2,7 @@ class NotesController < ApplicationController
 	before_action :set_book, only: [:create, :destroy]
 
 	def create
-    	@note = @book.notes.new(note_params)
+    	@note = @book.notes.new(title: params[:note][:title] , note: params[:note][:note] , reviewer_id: session[:reviewer_id] )
       	if @note.save
 			redirect_to @book, notice: 'Note was successfully added.'
       	else
@@ -11,7 +11,7 @@ class NotesController < ApplicationController
   	end
 
 	def destroy
-		@note = @nook.notes.find(params[:id])
+		@note = @book.notes.find(params[:id])
     	@note.destroy
       	redirect_to @book, notice: 'Note deleted.' 
   end

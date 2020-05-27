@@ -26,17 +26,22 @@ class ReviewersController < ApplicationController
   # POST /reviewers.json
   def create
 
-    @reviewer = Reviewer.new(reviewer_params)
+    if(Reviewer.find_by(name: params[:reviewer][:name]))
+      redirect_to login_path, notice: 'Username already exists'
+    else
+      @reviewer = Reviewer.new(reviewer_params)
 
-    respond_to do |format|
-      if @reviewer.save
-        format.html { redirect_to @reviewer, notice: 'Reviewer was successfully created.' }
-        format.json { render :show, status: :created, location: @reviewer }
-      else
-        format.html { render :new }
-        format.json { render json: @reviewer.errors, status: :unprocessable_entity }
+      respond_to do |format|
+        if @reviewer.save
+          format.html { redirect_to @reviewer, notice: 'Reviewer was successfully created.' }
+          format.json { render :show, status: :created, location: @reviewer }
+        else
+          format.html { render :new }
+          format.json { render json: @reviewer.errors, status: :unprocessable_entity }
+        end
       end
     end
+
   end
 
   # PATCH/PUT /reviewers/1
